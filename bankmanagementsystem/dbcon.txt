@@ -1,0 +1,36 @@
+Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+        Dim con As New OleDb.OleDbConnection
+
+        con.ConnectionString = "PROVIDER = Microsoft.Ace.OLEDB.12.0; Data Source =path_here.accdb"
+
+
+        Dim SqlString As String = "Insert Into [table_name_here] (column names here) Values (name of each field in IDE)"
+
+        Using conn As New OleDb.OleDbConnection(con.ConnectionString)
+
+
+
+            Using cmd As New OleDb.OleDbCommand(SqlString, con)
+
+
+
+                cmd.CommandType = CommandType.Text
+
+                cmd.Parameters.AddWithValue("column", TextBox1.Text)
+
+                cmd.Parameters.AddWithValue("column", TextBox2.Text)
+                cmd.Parameters.AddWithValue("column", TextBox3.Text)
+                cmd.Parameters.AddWithValue("column", TextBox4.Text)
+                cmd.Parameters.AddWithValue("column", TextBox5.Text)
+                cmd.Parameters.AddWithValue("column", TextBox6.Text)
+
+
+                con.Open()
+                
+                cmd.ExecuteNonQuery()
+               
+
+
+            End Using
+        End Using
+    End Sub
